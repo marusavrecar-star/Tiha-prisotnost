@@ -1,20 +1,46 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# AlexTherapies - Aleksandar Marinković s.p.
 
-# Run and deploy your AI Studio app
+Spletna stran za terapevtske storitve, jogo in nedualnost.
 
-This contains everything you need to run your app locally.
+## Namestitev
 
-View your app in AI Studio: https://ai.studio/apps/c55a9b8d-edac-4fb9-b289-f2e0625f31ab
+1. Klonirajte repozitorij:
+   ```bash
+   git clone <repo-url>
+   cd <repo-name>
+   ```
 
-## Run Locally
+2. Namestite odvisnosti:
+   ```bash
+   npm install
+   ```
 
-**Prerequisites:**  Node.js
+3. Ustvarite `.env` datoteko na podlagi `.env.example` (če so potrebni ključi).
 
+## Razvoj
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Zaženite razvojni strežnik:
+```bash
+npm run dev
+```
+
+## Produkcija
+
+1. Zgradite aplikacijo:
+   ```bash
+   npm run build
+   ```
+
+2. Zaženite produkcijski strežnik:
+   ```bash
+   NODE_ENV=production npm start
+   ```
+
+## Tehnologije
+
+- React 19
+- Vite
+- Tailwind CSS 4
+- Express (Backend)
+- Framer Motion (Animacije)
+- Lucide React (Ikone)
