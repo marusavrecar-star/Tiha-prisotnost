@@ -993,7 +993,8 @@ export default function App() {
               >
                 OMEJITEV ODGOVORNOSTI
               </button>
-              <p>&copy; {new Date().getFullYear()} Aleksandar Marinković. Vse pravice pridržane.</p>
+              <p className="text-xs opacity-60 mt-2">Stran uporablja AI tehnologijo.</p>
+              <p>&copy; 2023 Aleksandar Marinković. Vse pravice pridržane.</p>
             </div>
           </div>
         </div>

@@ -57,9 +57,27 @@ export default function ServiceQuiz() {
     }
   };
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the email to Mailchimp
+    
+    const score = getTotalScore();
+    const result = getResultContent();
+
+    try {
+      await fetch('/api/quiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          score,
+          resultTitle: result.title,
+          answers
+        })
+      });
+    } catch (error) {
+      console.error('Quiz submission error:', error);
+    }
+
     setShowEmailForm(false);
     setShowResult(true);
   };
@@ -162,7 +180,7 @@ export default function ServiceQuiz() {
           animate={{ opacity: 1, scale: 1 }}
           className="max-w-md mx-auto text-center space-y-8 bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-zen-300"
         >
-          <h4 className="text-2xl font-serif text-zen-900">Kam vam pošljem rezultate?</h4>
+          <h4 className="text-2xl font-serif text-zen-900">Želiš izvedeti rezultat?</h4>
           <p className="text-zen-600">Vpišite svoj e-poštni naslov za prikaz vašega osebnega rezultata.</p>
           <form onSubmit={handleEmailSubmit} className="space-y-4">
             <input
@@ -175,9 +193,9 @@ export default function ServiceQuiz() {
             />
             <button
               type="submit"
-              className="w-full inline-flex justify-center items-center px-8 py-4 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-zen-400 hover:bg-zen-500 transition-colors duration-300"
+              className="w-full inline-flex justify-center items-center px-8 py-4 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-zen-400 hover:bg-zen-500 transition-colors duration-300"
             >
-              Pošlji mi rezultate na mail!
+              Strinjam se z uporabo e-naslova in pridobi rezultat
             </button>
           </form>
         </motion.div>

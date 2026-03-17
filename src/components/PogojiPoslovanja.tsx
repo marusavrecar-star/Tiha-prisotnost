@@ -21,7 +21,7 @@ export default function PogojiPoslovanja({ onBack }: PogojiPoslovanjaProps) {
         
         <div className="prose prose-lg prose-zen max-w-none font-light text-zen-600 leading-relaxed space-y-6">
           <h2 className="text-2xl font-serif text-zen-900 mt-12 mb-6">Splošni pogoji poslovanja in uporabe storitev</h2>
-          <p>Nahajate se na spletnem mestu ALEXTHERAPIES, Aleksandar Marinković s.p., Škofljica, www.masterterapija.com ( v nadaljevanju ALEXTHERAPIES).</p>
+          <p>Nahajate se na spletnem mestu ALEXTHERAPIES, Aleksandar Marinković s.p., Škofljica, www.tihaprisotnost.com ( v nadaljevanju ALEXTHERAPIES).</p>
           <p>Ti splošni pogoji urejajo vaš dostop do tega spletnega mesta in njegovo uporabo. Z vstopom na spletno mesto potrjujete, da ste z njimi seznanjeni, z njimi soglašate ter da vas določbe teh splošnih pogojev zavezujejo.</p>
           
           <h2 className="text-2xl font-serif text-zen-900 mt-12 mb-6">Uvodne določbe</h2>
@@ -37,21 +37,21 @@ export default function PogojiPoslovanja({ onBack }: PogojiPoslovanjaProps) {
           <p>Stranka, z oddajo naročila termina in/ali obiska, zagotavlja, da je pogoje prebrala in izraža svoje razumevanje in soglasje s pogoji o omejitvi odgovornosti ter dovoljuje izvedbo storitve.</p>
           
           <h2 className="text-2xl font-serif text-zen-900 mt-12 mb-6">Omejitev odgovornosti – JOGA</h2>
-          <p>Z prijavo in/ali plačilom in/ali udeležitvijo tečaja joge v skupini, individualne joge, online tečajev joge, joge v sklopu šole ali delavnice/dogodka se strinjate in soglašate s splošnimi pogoji navedeni na spletni strani www.masterterapija.com in pogoji o omejitvi odgovornosti, ki so navedeni v nadaljevanju.</p>
+          <p>Z prijavo in/ali plačilom in/ali udeležitvijo tečaja joge v skupini, individualne joge, online tečajev joge, joge v sklopu šole ali delavnice/dogodka se strinjate in soglašate s splošnimi pogoji navedeni na spletni strani www.tihaprisotnost.com in pogoji o omejitvi odgovornosti, ki so navedeni v nadaljevanju.</p>
           <p>Udeležba na vodenih vadbah joge in ostalih programih ALEXTHERAPIES je prostovoljna in poteka v celoti na lastno odgovornost udeleženca, ter ALEXTHERAPIES zanjo ne nosi nobene odgovornosti.</p>
           
           <h2 className="text-2xl font-serif text-zen-900 mt-12 mb-6">Omejitev odgovornosti za poškodbe pri izvajanju joge</h2>
-          <p>Za vključitev in sodelovanje pri jogi v skupini, individualni jogi, online tečajih joge, jogi v sklopu šole ali delavnice/dogodka se odločate na lastno odgovornost in vadite na lastno odgovornost. ALEXTHERAPIES ne prevzema nobene odgovornosti za kakršnokoli škodo ali poškodbo, ki bi lahko nastala na osnovi izvedenih jogijskih vsebin in uporabe vsebin na spletni strani www.masterterapija.com.</p>
+          <p>Za vključitev in sodelovanje pri jogi v skupini, individualni jogi, online tečajev joge, jogi v sklopu šole ali delavnice/dogodka se odločate na lastno odgovornost in vadite na lastno odgovornost. ALEXTHERAPIES ne prevzema nobene odgovornosti za kakršnokoli škodo ali poškodbo, ki bi lahko nastala na osnovi izvedenih jogijskih vsebin in uporabe vsebin na spletni strani www.tihaprisotnost.com.</p>
           <p>S sodelovanjem v jogi se strinjate, da je vaše sodelovanje prostovoljno in da se zavedate, da lahko izvajanje joge vključuje fizično dejavnost, ki lahko privede do poškodb. ALEXTHERAPIES ne prevzema nobene odgovornosti za morebitne poškodbe ali škodo, ki bi nastala zaradi neprimernega izvajanja vaj ali ignoriranja omejitev ali kot posledica sodelovanja v jogi. To vključuje, vendar ni omejeno na, poškodbe zaradi nepravilnega izvajanja vaj, neustreznih fizičnih sposobnosti, neupoštevanja navodil in pomanjkanja ustrezne opreme.</p>
           <p>Vsak udeleženec prevzema polno odgovornost za svoje sodelovanje in delovanje med jogijsko vadbo.</p>
           <p>Pred začetkom sodelovanja v jogi morate preveriti svoje zdravstveno stanje in se posvetovati s svojim zdravnikom, če imate kakršne koli zdravstvene težave ali omejitve, ki bi lahko vplivale na vašo sposobnost varnega izvajanja vaj.</p>
           <p>ALEXTHERAPIES se zavezuje k zagotavljanju varnega in skrbnega okolja za izvajanje joge, vendar ne mora zagotoviti popolne zaščite pred morebitnimi poškodbami.</p>
-          <p>Za vključitev in sodelovanje pri jogi v skupini, individualni jogi, online tečajih joge, jogi v sklopu šole ali delavnice/dogodka se odločate na lastno odgovornost in tudi vadite na lastno odgovornost. ALEXTHERAPIES ne prevzema nobene odgovornosti za kakršnokoli škodo ali poškodbo, ki bi lahko nastala na osnovi izvedenih jogijskih vsebin in uporabe vsebin na spletni strani www.masterterapija.com.</p>
+          <p>Za vključitev in sodelovanje pri jogi v skupini, individualni jogi, online tečajih joge, jogi v sklopu šole ali delavnice/dogodka se odločate na lastno odgovornost in tudi vadite na lastno odgovornost. ALEXTHERAPIES ne prevzema nobene odgovornosti za kakršnokoli škodo ali poškodbo, ki bi lahko nastala na osnovi izvedenih jogijskih vsebin in uporabe vsebin na spletni strani www.tihaprisotnost.com.</p>
           <p>Če niste prepričani, ali lahko izvajate vadbo joge, se prej posvetujte s svojim zdravnikom oz. specialistom. Če imate resne oz. kronične zdravstvene težave ali ste noseči, se pred vadbo joge posvetujte s svojim zdravnikom oz. specialistom.</p>
           <p>Če med izvajanjem joge začutite slabost, vrtoglavico ali kakršnokoli drugo neprijetno počutje, takoj prenehajte z vajami in se posvetujte s svojim zdravnikom oz. specialistom.</p>
           <p>Poskrbite, da boste vaje iz online tečajev izvajali v varnem okolju.</p>
-          <p>Vsebine na spletni strani www.masterterapija.com oz. vse usmeritve in nasveti, ki jih vsebujejo, so zgolj informativne narave in ne morejo nadomestiti zdravniškega ali specialističnega mnenja.</p>
-          <p>Z uporabo spletne strani www.masterterapija.com uporabnik potrjuje, da je sprejel vse pogoje poslovanja ALEXTHERAPIES in se z njimi strinja.</p>
+          <p>Vsebine na spletni strani www.tihaprisotnost.com oz. vse usmeritve in nasveti, ki jih vsebujejo, so zgolj informativne narave in ne morejo nadomestiti zdravniškega ali specialističnega mnenja.</p>
+          <p>Z uporabo spletne strani www.tihaprisotnost.com uporabnik potrjuje, da je sprejel vse pogoje poslovanja ALEXTHERAPIES in se z njimi strinja.</p>
           <p>Prijava na jogo je mogoča do zapolnitve prostih mest v tej skupini.</p>
           <p>Za garderobo, izgubljene, odtujene ali pozabljene predmete ALEXTHERAPIES ne nosi nobene odgovornosti.</p>
           <p>V primeru, da se s pogoji ne strinjate, vas prosimo, da se ne udeležite joge.</p>
@@ -86,7 +86,7 @@ export default function PogojiPoslovanja({ onBack }: PogojiPoslovanjaProps) {
 
           <h2 className="text-2xl font-serif text-zen-900 mt-12 mb-6">Obseg in namen zbiranja osebnih podatkov</h2>
           <p>V kolikor ste se naročili na prejemanje naših e-novic, bomo vaše osebne podatke (elektronski naslov) uporabljali izključno za ta namen. Obdelava osebnih podatkov za ta namen temelji na vaši privolitvi. Podatkov v nobenem primeru ne bomo pošiljali tretjim osebam.</p>
-          <p>Na spletni strani www.masterterapija.com se ne shranjujejo podatki uporabnika, ko pošlje povpraševanje. Ti podatki se posredujejo direktno na elektronski naslov podjetja ALEXTHERAPIES in se uporabljajo zgolj za komunikacijo uporabnikom. Vsi shranjeni elektronski naslovi se pri raznih akcijah in promocijah uporabljajo za uporabo obveščanja naših strank. Ostali elektronski naslovi drugim niso vidni, prejemnik dobi elektronsko sporočilo brez videnja ostalih prejemnikov. Od elektronskih obvestil se lahko vsak posameznik odjavi na povezavi, ki je prisotna pri prejemanju elektronskih obvestil. Pri brezplačnih ponudbah ni potrebno potrjevanja pogojev, vsa pravila so enaka kot zgoraj.</p>
+          <p>Na spletni strani www.tihaprisotnost.com se ne shranjujejo podatki uporabnika, ko pošlje povpraševanje. Ti podatki se posredujejo direktno na elektronski naslov podjetja ALEXTHERAPIES in se uporabljali zgolj za komunikacijo uporabnikom. Vsi shranjeni elektronski naslovi se pri raznih akcijah in promocijah uporabljajo za uporabo obveščanja naših strank. Ostali elektronski naslovi drugim niso vidni, prejemnik dobi elektronsko sporočilo brez videnja ostalih prejemnikov. Od elektronskih obvestil se lahko vsak posameznik odjavi na povezavi, ki je prisotna pri prejemanju elektronskih obvestil. Pri brezplačnih ponudbah ni potrebno potrjevanja pogojev, vsa pravila so enaka kot zgoraj.</p>
           <p>Če se registrirate na naše spletno mesto ali ste uporabnik naših storitev, bomo uporabljali naslednje podatke:</p>
           <ul className="list-disc pl-6 space-y-2">
             <li>elektronski naslov</li>

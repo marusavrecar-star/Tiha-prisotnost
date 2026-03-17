@@ -87,7 +87,16 @@ export default function AiAssistant() {
 
     try {
       const response = await chatRef.current.sendMessage({ message: userMsg });
-      setMessages(prev => [...prev, { role: 'model', text: response.text }]);
+      const aiResponse = response.text;
+      setMessages(prev => [...prev, { role: 'model', text: aiResponse }]);
+
+      // Log the conversation to Alex's email
+      fetch('/api/log-ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMsg, response: aiResponse })
+      }).catch(err => console.error('Logging error:', err));
+
     } catch (error) {
       console.error(error);
       setMessages(prev => [...prev, { role: 'model', text: 'Oprostite, prišlo je do napake pri povezavi. Prosim, poskusite kasneje.' }]);

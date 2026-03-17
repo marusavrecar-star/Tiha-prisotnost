@@ -21,7 +21,7 @@ export default function OmejitevOdgovornosti({ onBack }: OmejitevOdgovornostiPro
         
         <div className="prose prose-zen max-w-none space-y-8 text-zen-800 font-light leading-relaxed">
           <p>
-            Z prijavo in/ali plačilom in/ali udeležitvijo tečaja joge v skupini, individualne joge, online tečajev joge, joge v sklopu šole ali delavnice/dogodka se strinjate in soglašate s splošnimi pogoji navedeni na spletni strani www.masterterapija.com in pogoji o omejitvi odgovornosti, ki so navedeni v nadaljevanju.
+            Z prijavo in/ali plačilom in/ali udeležitvijo tečaja joge v skupini, individualne joge, online tečajev joge, joge v sklopu šole ali delavnice/dogodka se strinjate in soglašate s splošnimi pogoji navedeni na spletni strani www.tihaprisotnost.com in pogoji o omejitvi odgovornosti, ki so navedeni v nadaljevanju.
           </p>
 
           <p>
@@ -31,7 +31,7 @@ export default function OmejitevOdgovornosti({ onBack }: OmejitevOdgovornostiPro
           <section>
             <h2 className="text-2xl font-serif text-zen-900 mb-4">Omejitev odgovornosti za poškodbe pri izvajanju joge</h2>
             <p>
-              Za vključitev in sodelovanje pri jogi v skupini, individualni jogi, online tečajih joge, jogi v sklopu šole ali delavnice/dogodka se odločate na lastno odgovornost in vadite na lastno odgovornost. Aleksandar Marinković s.p., ALEXTHERAPIES ne prevzema nobene odgovornosti za kakršnokoli škodo ali poškodbo, ki bi lahko nastala na osnovi izvedenih jogijskih vsebin in uporabe vsebin na spletni strani www.masterterapija.com.
+              Za vključitev in sodelovanje pri jogi v skupini, individualni jogi, online tečajih joge, jogi v sklopu šole ali delavnice/dogodka se odločate na lastno odgovornost in vadite na lastno odgovornost. Aleksandar Marinković s.p., ALEXTHERAPIES ne prevzema nobene odgovornosti za kakršnokoli škodo ali poškodbo, ki bi lahko nastala na osnovi izvedenih jogijskih vsebin in uporabe vsebin na spletni strani www.tihaprisotnost.com.
             </p>
           </section>
 
@@ -60,11 +60,11 @@ export default function OmejitevOdgovornosti({ onBack }: OmejitevOdgovornostiPro
           </p>
 
           <p>
-            Vsebine na spletni strani www.masterterapija.com oz. vse usmeritve in nasveti, ki jih vsebujejo, so zgolj informativne narave in ne morejo nadomestiti zdravniškega ali specialističnega mnenja. 
+            Vsebine na spletni strani www.tihaprisotnost.com oz. vse usmeritve in nasveti, ki jih vsebujejo, so zgolj informativne narave in ne morejo nadomestiti zdravniškega ali specialističnega mnenja. 
           </p>
 
           <p>
-            Z uporabo spletne strani www.masterterapija.com uporabnik potrjuje, da je sprejel vse pogoje poslovanja Aleksandar Marinković s.p., ALEXTHERAPIES in se z njimi strinja.
+            Z uporabo spletne strani www.tihaprisotnost.com uporabnik potrjuje, da je sprejel vse pogoje poslovanja Aleksandar Marinković s.p., ALEXTHERAPIES in se z njimi strinja.
           </p>
 
           <p>
