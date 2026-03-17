@@ -3,7 +3,16 @@ import { motion, AnimatePresence } from 'motion/react';
 import { MessageCircle, X, Send, Loader2, Sparkles } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const getAi = () => {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    console.warn('GEMINI_API_KEY is not defined. AI Assistant will be disabled.');
+    return null;
+  }
+  return new GoogleGenAI({ apiKey });
+};
+
+const ai = getAi();
 
 const SYSTEM_INSTRUCTION = `
 Ti si prijazen, miren in sočuten AI asistent na spletni strani Alexa Marinkovića (Tiha prisotnost).
@@ -43,7 +52,7 @@ export default function AiAssistant() {
   const chatRef = useRef<any>(null);
 
   useEffect(() => {
-    if (!chatRef.current) {
+    if (!chatRef.current && ai) {
       chatRef.current = ai.chats.create({
         model: 'gemini-3-flash-preview',
         config: {
@@ -62,7 +71,14 @@ export default function AiAssistant() {
   }, [messages]);
 
   const handleSend = async () => {
-    if (!input.trim() || !chatRef.current) return;
+    if (!input.trim()) return;
+    
+    if (!chatRef.current) {
+      if (!ai) {
+        setMessages(prev => [...prev, { role: 'model', text: 'Oprostite, AI asistent trenutno ni na voljo (manjka API ključ).' }]);
+      }
+      return;
+    }
 
     const userMsg = input.trim();
     setInput('');
