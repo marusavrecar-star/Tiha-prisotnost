@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "QuizSubmission": {
+      "title": "Quiz Submission",
+      "description": "Stores the results of the service quiz.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "score": { "type": "number" },
+        "resultTitle": { "type": "string" },
+        "answers": { "type": "array", "items": { "type": "number" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "score", "resultTitle", "createdAt"]
+    },
+    "ContactMessage": {
+      "title": "Contact Message",
+      "description": "Stores messages from the contact form.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/quiz_submissions/{submissionId}": {
+      "schema": "QuizSubmission",
+      "description": "Collection of quiz results."
+    },
+    "/contact_messages/{messageId}": {
+      "schema": "ContactMessage",
+      "description": "Collection of contact form messages."
+    }
+  }
+}
