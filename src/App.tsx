@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Instagram, Facebook, Youtube, Menu, X, ChevronDown, BookOpen, Cookie } from 'lucide-react';
-import { db } from './firebase';
-import { doc, getDocFromServer } from 'firebase/firestore';
 import AiAssistant from './components/AiAssistant';
 import ServiceQuiz from './components/ServiceQuiz';
 import MentorskiProgram from './components/MentorskiProgram';
@@ -30,21 +28,6 @@ export default function App() {
   const [activeCalendar, setActiveCalendar] = useState<CalendarCategory>(null);
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [showCookieBanner, setShowCookieBanner] = useState(false);
-
-  // Test Firebase connection
-  useEffect(() => {
-    async function testConnection() {
-      try {
-        // Try to fetch a dummy doc to test connection
-        await getDocFromServer(doc(db, 'test', 'connection'));
-      } catch (error) {
-        if (error instanceof Error && error.message.includes('the client is offline')) {
-          console.error("Firebase connection failed: Please check your configuration.");
-        }
-      }
-    }
-    testConnection();
-  }, []);
 
   // Listen for navigation events from components
   useEffect(() => {
