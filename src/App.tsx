@@ -74,6 +74,14 @@ export default function App() {
           <p className="font-medium text-zen-800">
             Po koncu šole pridobite znanje in izkušnjo metode utelešene prisotnosti, da lahko pomagate sebi in drugim pri osvoboditvi in prepoznavi naše rojstne pravice do sreče in izpolnjenosti.
           </p>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('sola'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
+          </div>
         </div>
       )
     },
@@ -93,6 +101,14 @@ export default function App() {
           <p className="font-medium text-zen-800">
             Cilj je izstopiti iz iluzije, da ste vi problem, in v varnem zavetju svojega doma začutiti mir in lahkotnost: "Lahko zadiham. Nič ni narobe z mano."
           </p>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('mentorski-program'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
+          </div>
         </div>
       )
     },
@@ -116,6 +132,14 @@ export default function App() {
           <p className="font-medium text-zen-800 italic border-l-2 border-zen-200 pl-4 py-2">
             "Zelo pomembno je, da telo doživimo kot živo občutenje in mu damo čas, da se samo razkrije kot vibracija, subtilna energija in odprt prostor."
           </p>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('joga'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
+          </div>
         </div>
       )
     },
@@ -135,6 +159,14 @@ export default function App() {
           <p className="font-medium text-zen-800">
             Ne iščemo nove "resnice", ampak odpremo možnost, da uzrete to, kar je že zdaj tukaj – pod pogojevanji, pod identiteto, pod potrebo, da bi se morali "popraviti". Takrat začnemo živeti življenje iz te globalne odprtosti.
           </p>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('satsang'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
+          </div>
         </div>
       )
     },
@@ -158,6 +190,14 @@ export default function App() {
               <li>Za vse, ki so pripravljeni stopiti iz glave v telo in poiskati trajno, jedrno razrešitev.</li>
             </ul>
           </div>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('individualna-terapija'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
+          </div>
         </div>
       )
     },
@@ -175,6 +215,14 @@ export default function App() {
               <li><strong>Za terapevte in coache:</strong> Za tiste, ki želijo pomagati drugim iz prostora resnične, utelešene prisotnosti, kjer terapevt ne prevzema bremen klienta in ne izgoreva.</li>
               <li><strong>Za ljubitelje prakse:</strong> Za vse, ki želijo pridobiti globoko, izkustveno znanje metode skozi živo delo, opazovanje in takojšnjo povratno informacijo.</li>
             </ul>
+          </div>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('sola'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
           </div>
         </div>
       )
@@ -200,6 +248,14 @@ export default function App() {
               <li><strong>Za udobje in varnost:</strong> Za tiste, ki se najlažje odprejo in predelujejo svoja jedrna čustva v varnem domačem okolju.</li>
             </ul>
           </div>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('mentorski-program'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
+          </div>
         </div>
       )
     },
@@ -217,6 +273,14 @@ export default function App() {
               <li><strong>Za sproščanje globokih napetosti:</strong> Za posameznike, ki v telesu nosijo stres in želijo skozi nežen dih sprostiti ujetost v živčnem sistemu.</li>
               <li><strong>Za pristen stik s seboj:</strong> Za vse, ki se želijo vrniti v telo in ga ponovno izkusiti kot varen, odprt in sprejemajoč prostor.</li>
             </ul>
+          </div>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('joga'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
           </div>
         </div>
       )
@@ -237,6 +301,14 @@ export default function App() {
               <li><strong>Za opuščanje nadzora:</strong> Za posameznike, ki želijo varno raziskati svoja prepričanja in nežno spustiti potrebo po nenehni kontroli nad življenjem.</li>
             </ul>
           </div>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('satsang'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
+          </div>
         </div>
       )
     },
@@ -250,6 +322,14 @@ export default function App() {
           <p>
             Pridružite se lahko večdnevnim srečanjem, intenzivnim dogodkom na Rogli za globoko delo na sebi, ali pa se vključite v večmesečno prakso Kashmirske joge, ki poteka vsak teden. Vsak dogodek je ustvarjen z namenom, da vam ponudi varen prostor za raziskovanje, spuščanje starih vzorcev in neposredno izkušnjo resnice.
           </p>
+          <div className="pt-4">
+            <button 
+              onClick={() => { setCurrentPage('dogodki'); setActiveModal(null); window.scrollTo(0,0); }} 
+              className="inline-flex items-center text-sm tracking-widest uppercase text-zen-500 hover:text-zen-900 transition-colors"
+            >
+              Izvedi več <ArrowRight size={14} className="ml-2" />
+            </button>
+          </div>
         </div>
       )
     }

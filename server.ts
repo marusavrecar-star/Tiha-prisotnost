@@ -101,16 +101,25 @@ async function startServer() {
           // If member already exists, we might want to update their tags
           if (mcData.title === "Member Exists") {
             console.log("Member already exists in Mailchimp, skipping add.");
-            // Optional: Update tags for existing member would require PUT /members/{hash}/tags
           } else {
             console.error("Mailchimp error:", mcData);
+            // Return specific Mailchimp error to frontend for debugging
+            return res.status(400).json({ 
+              success: false, 
+              error: `Mailchimp: ${mcData.detail || mcData.title || 'Neznana napaka'}` 
+            });
           }
         }
       } else {
-        console.warn("Mailchimp credentials missing or incomplete. Skipping Mailchimp sync.", {
-          hasKey: !!apiKey,
-          hasListId: !!listId,
-          hasPrefix: !!serverPrefix
+        const missing = [];
+        if (!apiKey) missing.push("API_KEY");
+        if (!listId) missing.push("LIST_ID");
+        if (!serverPrefix) missing.push("SERVER_PREFIX");
+        
+        console.warn("Mailchimp credentials missing or incomplete. Skipping Mailchimp sync.", { missing });
+        return res.status(400).json({ 
+          success: false, 
+          error: `Manjkajoči podatki za Mailchimp: ${missing.join(", ")}` 
         });
       }
 

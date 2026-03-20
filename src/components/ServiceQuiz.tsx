@@ -80,8 +80,9 @@ export default function ServiceQuiz() {
         })
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const data = await response.json();
         throw new Error(data.error || 'Prišlo je do napake pri povezavi.');
       }
 
@@ -89,12 +90,12 @@ export default function ServiceQuiz() {
       setShowResult(true);
     } catch (error) {
       console.error('Quiz submission error:', error);
-      setSubmitError('Nismo mogli vzpostaviti povezave z Mailchimpom. Prosimo, preverite nastavitve ali poskusite kasneje.');
-      // Still show result after a delay even if it fails, so user gets their value
+      setSubmitError(`Napaka: ${error instanceof Error ? error.message : 'Neznana napaka'}. Preverite Mailchimp nastavitve.`);
+      // Still show result after a longer delay if it fails, so user gets their value but sees the error
       setTimeout(() => {
         setShowEmailForm(false);
         setShowResult(true);
-      }, 3000);
+      }, 5000);
     } finally {
       setIsSubmitting(false);
     }
