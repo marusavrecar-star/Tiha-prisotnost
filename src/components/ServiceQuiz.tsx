@@ -195,7 +195,7 @@ export default function ServiceQuiz() {
               type="submit"
               className="w-full inline-flex justify-center items-center px-8 py-4 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-zen-400 hover:bg-zen-500 transition-colors duration-300"
             >
-              Strinjam se z uporabo e-naslova in pridobi rezultat
+              Prijavi se na e-novičke in pridobi rezultate vprašalnika
             </button>
           </form>
         </motion.div>
@@ -220,18 +220,10 @@ export default function ServiceQuiz() {
             </div>
           </div>
 
-          <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={getResultContent().actionLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-zen-400 hover:bg-zen-500 transition-colors duration-300"
-            >
-              {getResultContent().actionText}
-            </a>
+          <div className="pt-8 flex justify-center">
             <button
               onClick={handleStart}
-              className="inline-flex items-center justify-center px-8 py-4 border border-zen-300 text-base font-medium rounded-full text-zen-700 bg-white hover:bg-zen-50 transition-colors duration-300"
+              className="inline-flex items-center justify-center px-12 py-4 border border-zen-300 text-base font-medium rounded-full text-zen-700 bg-white hover:bg-zen-50 transition-colors duration-300"
             >
               Ponovno reši test
             </button>

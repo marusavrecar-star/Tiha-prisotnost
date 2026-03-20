@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Instagram, Facebook, Youtube, Menu, X, ChevronDown, BookOpen } from 'lucide-react';
+import { ArrowRight, Instagram, Facebook, Youtube, Menu, X, ChevronDown, BookOpen, Cookie } from 'lucide-react';
 import AiAssistant from './components/AiAssistant';
 import ServiceQuiz from './components/ServiceQuiz';
 import MentorskiProgram from './components/MentorskiProgram';
@@ -9,9 +9,9 @@ import Joga from './components/Joga';
 import Satsang from './components/Satsang';
 import CalendarModal from './components/CalendarModal';
 import PogojiPoslovanja from './components/PogojiPoslovanja';
-import KontaktModal from './components/KontaktModal';
 import Dogodki from './components/Dogodki';
 import OmejitevOdgovornosti from './components/OmejitevOdgovornosti';
+import CookieBanner from './components/CookieBanner';
 import { OAlexu } from './components/OAlexu';
 import { IndividualnaTerapija } from './components/IndividualnaTerapija';
 import Testimonials from './components/Testimonials';
@@ -27,11 +27,21 @@ export default function App() {
   const [activeModal, setActiveModal] = useState<ModalContent>(null);
   const [activeCalendar, setActiveCalendar] = useState<CalendarCategory>(null);
   const [currentPage, setCurrentPage] = useState<Page>('home');
-  const [isKontaktModalOpen, setIsKontaktModalOpen] = useState(false);
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
+
+  // Listen for navigation events from components
+  useEffect(() => {
+    const handleNavigate = (e: CustomEvent<Page>) => {
+      setCurrentPage(e.detail);
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('navigate' as any, handleNavigate as any);
+    return () => window.removeEventListener('navigate' as any, handleNavigate as any);
+  }, []);
 
   // Prevent scrolling when menu or modal is open
   useEffect(() => {
-    if (isMenuOpen || activeModal || activeCalendar || isKontaktModalOpen) {
+    if (isMenuOpen || activeModal || activeCalendar) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -39,7 +49,7 @@ export default function App() {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isMenuOpen, activeModal, activeCalendar, isKontaktModalOpen]);
+  }, [isMenuOpen, activeModal, activeCalendar]);
 
   const openModal = (content: ModalContent) => {
     setActiveModal(content);
@@ -251,15 +261,12 @@ export default function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-zen-50/80 backdrop-blur-md zen-border-b">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-zen-200 bg-white">
+            <div className="w-12 h-12 flex-shrink-0">
               <img 
-                src="/icon_green_AM.png" 
+                src="https://i.postimg.cc/WpFtmL4d/icon-green-AM.png" 
                 alt="Logo" 
                 className="w-full h-full object-contain"
-                onError={(e) => {
-                  // Fallback if logo is not yet uploaded or is PDF
-                  (e.target as HTMLImageElement).style.display = 'none';
-                }}
+                referrerPolicy="no-referrer"
               />
             </div>
             <span className="font-serif text-xl tracking-wide uppercase group-hover:text-zen-600 transition-colors">TIHA PRISOTNOST</span>
@@ -555,10 +562,20 @@ export default function App() {
         </section>
 
         {/* Approach / Intro */}
-        <section id="pristop" className="py-24 px-6 bg-white">
-          <div className="max-w-3xl mx-auto text-center">
+        <section id="pristop" className="py-24 px-6 bg-white relative overflow-hidden">
+          {/* Background Logo Imprint */}
+          <div className="absolute -left-48 top-1/2 -translate-y-1/2 w-[900px] h-[900px] opacity-[0.1] blur-[2px] pointer-events-none select-none">
+            <img 
+              src="https://i.postimg.cc/WpFtmL4d/icon-green-AM.png" 
+              alt="" 
+              className="w-full h-full object-contain"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          
+          <div className="max-w-3xl mx-auto text-center relative z-10">
             <h2 className="text-3xl md:text-4xl mb-12">Iz ujetosti v glavi v živo prisotnost</h2>
-            <div className="space-y-6 text-zen-600 font-light leading-relaxed text-xl text-left md:text-center">
+            <div className="space-y-6 text-zen-600 font-light leading-relaxed text-lg text-left md:text-center">
               <p>
                 Moj način dela združuje nedualni uvid, razumevanje psihološkega trpljenja in globoko delo s telesom. Iz varnega prostora vas popeljem naravnost do jedra vaše težave – mimo konceptov, neposredno skozi vaš živčni sistem in zavest.
               </p>
@@ -632,8 +649,8 @@ export default function App() {
               <div className="border border-zen-300 rounded-2xl bg-white flex flex-col h-full shadow-sm overflow-hidden group">
                 <div className="h-56 w-full overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=800&auto=format&fit=crop" 
-                    alt="Skupina ljudi, ki posluša učitelja" 
+                    src="https://i.postimg.cc/9Xdr03F4/IMG-1014.jpg" 
+                    alt="Šola: Proces utelešene prisotnosti" 
                     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
                     referrerPolicy="no-referrer" 
                   />
@@ -679,7 +696,7 @@ export default function App() {
               <div className="border border-zen-300 rounded-2xl bg-white flex flex-col h-full shadow-sm overflow-hidden group">
                 <div className="h-56 w-full overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?q=80&w=800&auto=format&fit=crop" 
+                    src="https://i.postimg.cc/44q7j40j/IMG-1012.jpg" 
                     alt="Joga iz Kashmirske tradicije" 
                     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
                     referrerPolicy="no-referrer" 
@@ -712,8 +729,8 @@ export default function App() {
               <div className="border border-zen-300 rounded-2xl bg-white flex flex-col h-full shadow-sm overflow-hidden group">
                 <div className="h-56 w-full overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=800&auto=format&fit=crop" 
-                    alt="Calm water and sky" 
+                    src="https://i.postimg.cc/fTyCfb9f/IMG-0689.jpg" 
+                    alt="Satsang in nedualna učenja" 
                     className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
                     referrerPolicy="no-referrer" 
                   />
@@ -957,17 +974,17 @@ export default function App() {
               Proces utelešene prisotnosti. Iz stalnega premlevanja v več miru, povezanosti in resnične prisotnosti.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                onClick={() => setIsKontaktModalOpen(true)}
-                className="inline-block border border-zen-900 text-zen-900 px-6 py-3 text-sm tracking-widest uppercase hover:bg-zen-900 hover:text-white transition-colors text-center"
+              <a 
+                href="mailto:alex.marinc92@gmail.com"
+                className="inline-block bg-zen-400 text-white px-8 py-4 text-sm tracking-widest uppercase hover:bg-zen-500 transition-colors text-center"
               >
                 Kontaktiraj me
-              </button>
+              </a>
               <a 
                 href="https://alexmarinkovic.youcanbook.me" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-block border border-zen-900 text-zen-900 px-6 py-3 text-sm tracking-widest uppercase hover:bg-zen-900 hover:text-white transition-colors text-center"
+                className="inline-block border border-zen-300 text-zen-600 px-8 py-4 text-sm tracking-widest uppercase hover:bg-zen-50 transition-colors text-center"
               >
                 REZERVIRAJ UVODNI POGOVOR
               </a>
@@ -1006,6 +1023,16 @@ export default function App() {
               >
                 OMEJITEV ODGOVORNOSTI
               </button>
+              <button 
+                onClick={() => {
+                  localStorage.removeItem('cookie-consent');
+                  window.location.reload();
+                }}
+                className="hover:text-white transition-colors text-right text-xs opacity-60 flex items-center justify-end gap-2"
+              >
+                <Cookie size={12} />
+                NASTAVITVE PIŠKOTKOV
+              </button>
               <p className="text-xs opacity-60 mt-2">Stran uporablja AI tehnologijo.</p>
               <p>&copy; 2023 Aleksandar Marinković. Vse pravice pridržane.</p>
             </div>
@@ -1013,8 +1040,8 @@ export default function App() {
         </div>
       </footer>
 
-      <KontaktModal isOpen={isKontaktModalOpen} onClose={() => setIsKontaktModalOpen(false)} />
       <AiAssistant />
+      <CookieBanner />
     </div>
   );
 }

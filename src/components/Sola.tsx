@@ -27,6 +27,15 @@ export default function Sola({ onBack }: Props) {
           Šola: Proces utelešene prisotnosti
         </h1>
 
+        <div className="mb-12 rounded-2xl overflow-hidden shadow-sm border border-zen-200 aspect-[16/9] bg-zen-100">
+          <img 
+            src="https://i.postimg.cc/9Xdr03F4/IMG-1014.jpg" 
+            alt="Šola: Proces utelešene prisotnosti" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+
         <div className="prose prose-lg prose-stone max-w-none text-zen-600 font-light leading-relaxed">
           <p className="text-xl mb-8">
             Ta terapevtski pristop je nastal iz spoznanja, da zgolj razumevanje in duhovni koncepti niso dovolj. V resnici nas je svet ločil od našega nenapornega bivanja in smo prešli v budni trans trpljenja, ki zdaj verjame, da je ločen, in tako igra igro dvojnosti.

@@ -31,15 +31,11 @@ export function OAlexu({ onBack }: OAlexuProps) {
           Alex Marinković
         </h1>
 
-        <div className="mb-12 rounded-2xl overflow-hidden shadow-sm border border-zen-200 aspect-[3/2] bg-zen-100">
+        <div className="mb-12 rounded-2xl overflow-hidden shadow-sm border border-zen-200 aspect-square bg-zen-100 max-w-md mx-auto">
           <img 
-            src="/IMG_1519.JPG" 
+            src="https://i.postimg.cc/7Yq8H0jD/IMG-1519.jpg" 
             alt="Alex Marinković" 
             className="w-full h-full object-cover"
-            onError={(e) => {
-              // Fallback if image is not yet uploaded
-              (e.target as HTMLImageElement).src = "https://picsum.photos/seed/alex/1200/800";
-            }}
             referrerPolicy="no-referrer"
           />
         </div>
@@ -94,6 +90,23 @@ export function OAlexu({ onBack }: OAlexuProps) {
           <p>
             Ne učim, kako postati "popoln". Bolj te želim podpreti, da se vrneš domov v to, kar v resnici si – v tiho notranjo svobodo, mir in povezanost z življenjem, ne glede na zunanje okoliščine.
           </p>
+
+          <div className="pt-12 mt-12 border-t border-zen-200 flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="mailto:alex.marinc92@gmail.com"
+              className="inline-flex items-center justify-center px-8 py-4 bg-zen-400 text-white text-sm tracking-widest uppercase hover:bg-zen-500 transition-colors w-full sm:w-auto text-center"
+            >
+              Kontaktiraj me
+            </a>
+            <a 
+              href="https://alexmarinkovic.youcanbook.me" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-4 border border-zen-300 text-zen-600 text-sm tracking-widest uppercase hover:bg-zen-50 transition-colors w-full sm:w-auto text-center"
+            >
+              Rezerviraj uvodni pogovor
+            </a>
+          </div>
         </div>
       </div>
     </motion.div>

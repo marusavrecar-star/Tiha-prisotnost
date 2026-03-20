@@ -37,6 +37,18 @@ export default function Joga({ onBack }: Props) {
             Joga iz kašmirske tradicije ima zelo subtilen in občutljiv pristop. To jogo je v Evropo pripeljal Jean Klein, sam pa sem se je učil neposredno pri Billyju Doylu. Pri tej jogi se ne usmerjamo v cilje ali dosežke, temveč v slavljenje življenja iz trenutka v trenutek.
           </p>
 
+          <div className="my-12">
+            <div className="rounded-2xl overflow-hidden shadow-sm border border-zen-200 bg-zen-100 aspect-[3/4] max-w-md mx-auto">
+              <img 
+                src="https://i.postimg.cc/FFy7zts3/IMG-1015.jpg" 
+                alt="Joga z Billy Doylom v Londonu" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <p className="mt-3 text-sm text-zen-500 italic text-center">Joga z Billy Doylom v Londonu</p>
+          </div>
+
           <p className="mb-6">
             Naše celotno telo je pogojeno telo – pogojeni so naši organi in čutila. Na splošno je telo zakrčeno, saj nosi zapise naših staršev, življenjskih izkušenj in travmatičnih dogodkov. Skozi določene asane, dihalne vaje in poglobljeno poslušanje dovolimo, da se telo osvobodi kontrakcij, ki jih nosi.
           </p>
