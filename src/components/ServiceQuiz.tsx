@@ -36,6 +36,8 @@ export default function ServiceQuiz() {
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleStart = () => {
     setIsOpen(true);
@@ -44,6 +46,7 @@ export default function ServiceQuiz() {
     setShowEmailForm(false);
     setShowResult(false);
     setEmail('');
+    setSubmitError(null);
   };
 
   const handleAnswer = (value: number) => {
@@ -59,12 +62,14 @@ export default function ServiceQuiz() {
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitError(null);
     
     const score = getTotalScore();
     const result = getResultContent();
 
     try {
-      await fetch('/api/quiz', {
+      const response = await fetch('/api/quiz', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -74,12 +79,25 @@ export default function ServiceQuiz() {
           answers
         })
       });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Prišlo je do napake pri povezavi.');
+      }
+
+      setShowEmailForm(false);
+      setShowResult(true);
     } catch (error) {
       console.error('Quiz submission error:', error);
+      setSubmitError('Nismo mogli vzpostaviti povezave z Mailchimpom. Prosimo, preverite nastavitve ali poskusite kasneje.');
+      // Still show result after a delay even if it fails, so user gets their value
+      setTimeout(() => {
+        setShowEmailForm(false);
+        setShowResult(true);
+      }, 3000);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setShowEmailForm(false);
-    setShowResult(true);
   };
 
   const getTotalScore = () => answers.reduce((a, b) => a + b, 0);
@@ -186,17 +204,32 @@ export default function ServiceQuiz() {
             <input
               type="email"
               required
+              disabled={isSubmitting}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Vaš e-poštni naslov"
-              className="w-full px-4 py-3 border border-zen-300 rounded-lg focus:ring-2 focus:ring-zen-400 focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-3 border border-zen-300 rounded-lg focus:ring-2 focus:ring-zen-400 focus:border-transparent outline-none transition-all disabled:opacity-50"
             />
             <button
               type="submit"
-              className="w-full inline-flex justify-center items-center px-8 py-4 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-zen-400 hover:bg-zen-500 transition-colors duration-300"
+              disabled={isSubmitting}
+              className="w-full inline-flex justify-center items-center px-8 py-4 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-zen-400 hover:bg-zen-500 transition-colors duration-300 disabled:opacity-50"
             >
-              Prijavi se na e-novičke in pridobi rezultate vprašalnika
+              {isSubmitting ? (
+                <span className="flex items-center">
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Povezovanje...
+                </span>
+              ) : (
+                "Prijavi se na e-novičke in pridobi rezultate vprašalnika"
+              )}
             </button>
+            {submitError && (
+              <p className="text-red-500 text-sm mt-2">{submitError}</p>
+            )}
           </form>
         </motion.div>
       ) : showResult ? (

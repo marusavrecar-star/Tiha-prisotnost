@@ -61,12 +61,23 @@ async function startServer() {
     
     const apiKey = process.env.MAILCHIMP_API_KEY;
     const listId = process.env.MAILCHIMP_LIST_ID;
-    const serverPrefix = process.env.MAILCHIMP_SERVER_PREFIX;
+    let serverPrefix = process.env.MAILCHIMP_SERVER_PREFIX;
     const formId = process.env.FORMSPREE_FORM_ID;
+
+    // If server prefix is missing but API key is present, try to extract it (e.g., "key-us19" -> "us19")
+    if (!serverPrefix && apiKey && apiKey.includes("-")) {
+      serverPrefix = apiKey.split("-")[1];
+    }
 
     try {
       // 1. Add to Mailchimp (Mandatory for lead collection)
       if (apiKey && listId && serverPrefix) {
+        // Mailchimp uses MD5 hash of lowercase email for member identification in some endpoints,
+        // but for simple POST to /members, we just send the email.
+        // To handle "already subscribed", we can use the "Add or update" endpoint (PUT)
+        // but that requires MD5. For simplicity and to avoid extra dependencies, 
+        // we'll stick to POST but handle the 400 error gracefully if it's "Member Exists".
+        
         const mcResponse = await fetch(`https://${serverPrefix}.api.mailchimp.com/3.0/lists/${listId}/members`, {
           method: "POST",
           headers: {
@@ -77,40 +88,55 @@ async function startServer() {
             email_address: email,
             status: "subscribed",
             merge_fields: {
-              FNAME: email.split('@')[0], // Use part of email as name since we don't collect name in quiz
+              FNAME: email.split('@')[0],
               LNAME: "Vprašalnik",
             },
             tags: ["Vprašalnik", resultTitle]
           })
         });
         
+        const mcData = await mcResponse.json();
+        
         if (!mcResponse.ok) {
-          const errorData = await mcResponse.json();
-          console.error("Mailchimp error:", errorData);
+          // If member already exists, we might want to update their tags
+          if (mcData.title === "Member Exists") {
+            console.log("Member already exists in Mailchimp, skipping add.");
+            // Optional: Update tags for existing member would require PUT /members/{hash}/tags
+          } else {
+            console.error("Mailchimp error:", mcData);
+          }
         }
       } else {
-        console.warn("Mailchimp credentials missing. Skipping Mailchimp sync.");
+        console.warn("Mailchimp credentials missing or incomplete. Skipping Mailchimp sync.", {
+          hasKey: !!apiKey,
+          hasListId: !!listId,
+          hasPrefix: !!serverPrefix
+        });
       }
 
       // 2. Send email notification via Formspree (Optional, so Alex knows someone solved it)
       if (formId) {
-        await fetch(`https://formspree.io/f/${formId}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify({
-            email,
-            score,
-            resultTitle,
-            answers: JSON.stringify(answers),
-            _subject: `Nov rešen vprašalnik: ${resultTitle} (${email})`
-          })
-        });
+        try {
+          await fetch(`https://formspree.io/f/${formId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({
+              email,
+              score,
+              resultTitle,
+              answers: JSON.stringify(answers),
+              _subject: `Nov rešen vprašalnik: ${resultTitle} (${email})`
+            })
+          });
+        } catch (fsError) {
+          console.error("Formspree notification error:", fsError);
+        }
       }
 
       res.status(200).json({ success: true });
     } catch (error) {
       console.error("Quiz submission error:", error);
-      res.status(500).json({ success: false });
+      res.status(500).json({ success: false, error: error instanceof Error ? error.message : String(error) });
     }
   });
 
