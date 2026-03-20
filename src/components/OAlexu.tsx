@@ -31,6 +31,19 @@ export function OAlexu({ onBack }: OAlexuProps) {
           Alex Marinković
         </h1>
 
+        <div className="mb-12 rounded-2xl overflow-hidden shadow-sm border border-zen-200 aspect-[3/2] bg-zen-100">
+          <img 
+            src="/IMG_1519.JPG" 
+            alt="Alex Marinković" 
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              // Fallback if image is not yet uploaded
+              (e.target as HTMLImageElement).src = "https://picsum.photos/seed/alex/1200/800";
+            }}
+            referrerPolicy="no-referrer"
+          />
+        </div>
+
         <div className="space-y-8 text-lg text-zen-600 font-light leading-relaxed">
           <p>
             Sem Aleksandar Marinković (Alex). Sem terapevt, sopotnik na poti samospoznanja in učitelj joge. Ljudem pomagam na poti iz ujetosti v glavi in starih ranah v notranji mir in živo prisotnost.

@@ -250,7 +250,20 @@ export default function App() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-zen-50/80 backdrop-blur-md zen-border-b">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <button onClick={() => setCurrentPage('home')} className="font-serif text-xl tracking-wide uppercase">TIHA PRISOTNOST</button>
+          <button onClick={() => setCurrentPage('home')} className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-zen-200 bg-white">
+              <img 
+                src="/icon_green_AM.png" 
+                alt="Logo" 
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  // Fallback if logo is not yet uploaded or is PDF
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+            </div>
+            <span className="font-serif text-xl tracking-wide uppercase group-hover:text-zen-600 transition-colors">TIHA PRISOTNOST</span>
+          </button>
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8 text-sm tracking-widest uppercase relative">

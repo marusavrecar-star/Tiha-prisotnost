@@ -18,9 +18,19 @@ async function startServer() {
   // API route for contact form
   app.post("/api/contact", async (req, res) => {
     const { name, email, subject, message } = req.body;
+    const formId = process.env.FORMSPREE_FORM_ID;
+
+    // If no Formspree, we can't send a direct email notification easily
+    if (!formId) {
+      console.error("FORMSPREE_FORM_ID is missing. Contact form cannot send emails.");
+      return res.status(500).json({ 
+        success: false, 
+        message: "Sistem za pošiljanje e-pošte ni nastavljen. Prosimo, kontaktirajte nas direktno na email." 
+      });
+    }
 
     try {
-      const response = await fetch("https://formspree.io/f/marusavrecar@gmail.com", {
+      const response = await fetch(`https://formspree.io/f/${formId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,63 +46,91 @@ async function startServer() {
       });
 
       if (response.ok) {
-        res.status(200).json({ success: true, message: "Sporočilo uspešno poslano." });
+        res.status(200).json({ success: true });
       } else {
-        res.status(500).json({ success: false, message: "Napaka pri pošiljanju." });
+        res.status(500).json({ success: false });
       }
     } catch (error) {
-      res.status(500).json({ success: false, message: "Napaka na strežniku." });
-    }
-  });
-
-  // API route for quiz submissions
-  app.post("/api/quiz", async (req, res) => {
-    const { email, score, resultTitle, answers } = req.body;
-
-    try {
-      // Send result to Alex via Formspree
-      await fetch("https://formspree.io/f/marusavrecar@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          score,
-          resultTitle,
-          answers: JSON.stringify(answers),
-          _subject: `Nov rešen vprašalnik: ${resultTitle} (${email})`
-        })
-      });
-
-      res.status(200).json({ success: true });
-    } catch (error) {
-      console.error("Quiz error:", error);
       res.status(500).json({ success: false });
     }
   });
 
-  // API route for AI logging (optional, but good for Alex to see questions)
-  app.post("/api/log-ai", async (req, res) => {
-    const { message, response } = req.body;
+  // API route for quiz submissions (Mailchimp integration)
+  app.post("/api/quiz", async (req, res) => {
+    const { email, score, resultTitle, answers } = req.body;
+    
+    const apiKey = process.env.MAILCHIMP_API_KEY;
+    const listId = process.env.MAILCHIMP_LIST_ID;
+    const serverPrefix = process.env.MAILCHIMP_SERVER_PREFIX;
+    const formId = process.env.FORMSPREE_FORM_ID;
 
     try {
-      // Log to Formspree so Alex gets an email with the conversation
-      // (Note: This might be a lot of emails if many people use it)
-      await fetch("https://formspree.io/f/marusavrecar@gmail.com", {
+      // 1. Add to Mailchimp (Mandatory for lead collection)
+      if (apiKey && listId && serverPrefix) {
+        const mcResponse = await fetch(`https://${serverPrefix}.api.mailchimp.com/3.0/lists/${listId}/members`, {
+          method: "POST",
+          headers: {
+            "Authorization": `apikey ${apiKey}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            email_address: email,
+            status: "subscribed",
+            merge_fields: {
+              FNAME: email.split('@')[0], // Use part of email as name since we don't collect name in quiz
+              LNAME: "Vprašalnik",
+            },
+            tags: ["Vprašalnik", resultTitle]
+          })
+        });
+        
+        if (!mcResponse.ok) {
+          const errorData = await mcResponse.json();
+          console.error("Mailchimp error:", errorData);
+        }
+      } else {
+        console.warn("Mailchimp credentials missing. Skipping Mailchimp sync.");
+      }
+
+      // 2. Send email notification via Formspree (Optional, so Alex knows someone solved it)
+      if (formId) {
+        await fetch(`https://formspree.io/f/${formId}`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            email,
+            score,
+            resultTitle,
+            answers: JSON.stringify(answers),
+            _subject: `Nov rešen vprašalnik: ${resultTitle} (${email})`
+          })
+        });
+      }
+
+      res.status(200).json({ success: true });
+    } catch (error) {
+      console.error("Quiz submission error:", error);
+      res.status(500).json({ success: false });
+    }
+  });
+
+  // API route for AI logging
+  app.post("/api/log-ai", async (req, res) => {
+    const { message, response } = req.body;
+    const formId = process.env.FORMSPREE_FORM_ID;
+
+    if (!formId) return res.status(200).json({ success: true });
+
+    try {
+      await fetch(`https://formspree.io/f/${formId}`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({
           userMessage: message,
           aiResponse: response,
           _subject: "AI Klepet: Novo vprašanje"
         })
       });
-
       res.status(200).json({ success: true });
     } catch (error) {
       res.status(500).json({ success: false });
