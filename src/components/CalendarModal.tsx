@@ -256,22 +256,6 @@ export default function CalendarModal({ category, onClose }: CalendarModalProps)
                             {e.description}
                           </p>
                         )}
-                        
-                        {e.link && (
-                          <button 
-                            onClick={() => {
-                              onClose();
-                              if (e.link === 'dogodki') {
-                                (window as any).onNavigate('dogodki');
-                              } else if (e.link === 'mentorski-program') {
-                                (window as any).onNavigate('mentorski-program');
-                              }
-                            }}
-                            className="w-full py-2.5 bg-white border border-zen-300 text-zen-800 text-xs tracking-widest uppercase hover:bg-zen-900 hover:text-white hover:border-zen-900 transition-all rounded-lg font-medium"
-                          >
-                            Več informacij
-                          </button>
-                        )}
                       </div>
                     );
                   })}

@@ -55,7 +55,6 @@ export default function Satsang({ onBack }: Props) {
             </p>
             
             <div className="text-center py-6 border-t border-b border-zen-300 mb-8">
-              <p className="text-xl text-zen-900 mb-2">Cena srečanja: 20 EUR</p>
               <p className="text-sm text-zen-500">
                 Rezervacija mesta je potrjena s plačilom akontacije (število mest je omejeno). Po prijavi dobite vse podrobnosti glede plačila in organizacije.
               </p>
