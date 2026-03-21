@@ -16,7 +16,7 @@ export default function Coin() {
           <div className="mb-4">
             <img 
               src="https://tihaprisotnost.si/wp-content/uploads/2023/10/cropped-logo-tiha-prisotnost-1.png" 
-              alt="Tiha Prisotnost Logo" 
+              alt="Aleksandar Marinković - Tiha prisotnost Logo" 
               className="w-32 h-32 object-contain"
               referrerPolicy="no-referrer"
               onError={(e) => {
